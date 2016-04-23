@@ -1,0 +1,17 @@
+CSE 190 Computational Robotics
+PA2: Mobile Robot Localization using Particle Filter Method
+
+Objective
+You will learn about the methods for estimating the unknown pose of a moving robot, inside an environment whose map is known, by global localization using the particle filter method. A reliable position estimation is of fundamental importance to building truly autonomous robots, especially the ones that perform navigation and local manipulation tasks, within indoor environments.
+
+Task
+Implement a particle filter in ROS for localizing a robot in the Stage world without knowing its starting pose, using Laser sensor measurements from the stage simulator. Play with the number of particles, motion models, measurement models, and resampling algorithms to achieve a better metric for localization in terms of accuracy and speed. 
+
+Important dates:
+Final submission deadline: Thursday May 5, 11:59 PM
+Required solution: robot.py (submit the code in python for this assignment)
+Acquiring the starter code: The skeleton code is available at this git repo: https://git.ucsd.edu/srsivara/cse_190_pa2. Clone the repository into your catkin_ws/src directory and then build it like a normal ros package.
+
+Overview
+You will be given a Stage-simulated 2D world with a known floorplan of the environment and  you will have no clue where the robot is located in it. So you need to find out the estimate for the robot’s position using the sensors measurements from laser range sensors on the robot that give information about the distances of the obstacles from the robot in certain angles, and then using the known map to match the locations that are more likely to mimic the robot’s pose.  
+You need to use the particle filter to determine the position of the robot moving in the stage simulator. A particle filter is represented by a set of random samples (particles) or guesses drawn from a prior distribution of guesses based on their importance weights. In the beginning, the beliefs of the robot’s pose on the map is completely uncertain. So initially it is expected that the particles or guesses are placed all over the map, all starting with an equal importance. The importance weights for a particle are updated by observing the laser measurements from laser sensor on robot and calculating the likelihood of that particle to see the obstacles as seen by the robot using the map data.
