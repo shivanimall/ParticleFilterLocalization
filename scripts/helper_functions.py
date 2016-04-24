@@ -53,10 +53,12 @@ def move_function (angle, dist):
 	twist = Twist()
 	cmd_vel_pub.publish(twist)
 
-def pose_update(x, y, theta):
+def get_pose(x, y, theta):
 
 	""" 
 	Pose update function will return the pose of a particle given x,y,theta. 	
+	- x, y will be directly used.
+	- But as all odometry is 6DOF (Degrees of Freedom) we'll need a quaternion created from the euler angle
 	"""
 
 	pose = Pose()
