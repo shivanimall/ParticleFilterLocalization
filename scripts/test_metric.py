@@ -2,7 +2,7 @@
 
 import rospy
 from nav_msgs.msg import Odometry
-from geometry_msgs.msg import Pose, PoseArray, Twist, Quaternion
+from geometry_msgs.msg import Pose, PoseArray
 from std_msgs.msg import Bool
 import json
 import tf
@@ -46,12 +46,6 @@ class RobotLogger():
         self.std_dev_data = []
         self.metric_data = []
         self.init_time = float(rospy.Time.now().to_sec()/60)
-        #Initialize with json format
-        # self.time_data.extend(['{', '\\n', '\t', '"time_elapsed": [', '\\n'])
-        # self.std_dev_x_data.extend(['{', '\\n', '\t', '"std_dev_x": [', '\\n'])
-        # self.std_dev_y_data.extend(['{', '\\n', '\t', '"std_dev_y": [', '\\n'])
-        # self.std_dev_angle_data.extend(['{', '\\n', '\t', '"std_dev_angle": [', '\\n'])
-        # self.metric_data.extend(['{', '\\n', '\t', '"metric": [', '\\n'])
 
     def update_ground_truth(self, message):
         self.base_truth_x = message.pose.pose.position.x
@@ -97,8 +91,6 @@ class RobotLogger():
     	var_y_value = 0.0
     	var_angle_value = 0.0
 
-    	#print self.base_truth_x, self.base_truth_y, self.base_truth_angle
-
     	#STD DEV
     	for particle_index in range(len(self.particlecloud_poses)):
     		pose = self.particlecloud_poses[particle_index]
@@ -124,8 +116,9 @@ class RobotLogger():
     	self.std_dev_angle_data.extend([std_dev_angle_value])
 
     	metric = (self.std_dev_x_data[0]/std_dev_x_value)+(self.std_dev_y_data[0]/std_dev_y_value)+(self.std_dev_angle_data[0]/std_dev_angle_value)
-        if (time_elapsed_value > 10):
-            metric = metric/(time_elapsed_value-9)
+
+        # if (time_elapsed_value > 10):
+        #     metric = metric/(time_elapsed_value-9)
 
 
         #print std_dev_x_value, std_dev_y_value, std_dev_angle_value, metric
