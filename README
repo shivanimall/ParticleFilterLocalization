@@ -7,8 +7,6 @@ You will learn about the methods for estimating the unknown pose of a moving rob
 Task
 Implement a particle filter in ROS for localizing a robot in the Stage world without knowing its starting pose, using Laser sensor measurements from the stage simulator. Play with the number of particles, motion models, measurement models, and resampling algorithms to achieve a better metric for localization in terms of accuracy and speed. 
 
-Important dates:
-Final submission deadline: Thursday May 5, 11:59 PM
 Required solution: robot.py (submit the code in python for this assignment)
 Acquiring the starter code: The skeleton code is available at this git repo: https://git.ucsd.edu/srsivara/cse_190_pa2. Clone the repository into your catkin_ws/src directory and then build it like a normal ros package.
 
