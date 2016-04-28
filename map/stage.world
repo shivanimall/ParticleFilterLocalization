@@ -71,6 +71,6 @@ floorplan
 ( 
   name "tutorial"
   bitmap "MAP.png"
-  size [259.0 194.0 0.0]
+  size [259.0 194.0 0.5]
   pose [ 129.5 97.0 0.0 0.0 ]
 )
