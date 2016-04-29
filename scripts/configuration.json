@@ -21,9 +21,9 @@
     "first_move_sigma_x": 2,
     "first_move_sigma_y": 2,
     "first_move_sigma_angle": 0.08,
-    "resample_sigma_x": 0.3, 
-    "resample_sigma_y": 0.3,
-    "resample_sigma_angle": 0.026,
+    "resample_sigma_x": 0.1, 
+    "resample_sigma_y": 0.1,
+    "resample_sigma_angle": 0.02,
 
     "laser_z_hit": 0.80,
     "laser_z_rand": 0.05,
