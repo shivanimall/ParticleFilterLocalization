@@ -1,0 +1,76 @@
+#Laser Ranger Properties 
+define topurg ranger
+(
+  #Laser Sensor 
+  #range => min & max ranger of a laser scan
+  #fov => angle of laser spread
+  #samples => number of laser scans
+
+  sensor(       
+    range [ 0.0  200.0 ]
+    fov 360
+    samples 100 
+  )
+
+  color "black"
+  size [ 0.05 0.05 0.1 ]
+)
+
+#Robot Properties
+define robot position
+(
+  #DONT CHANGE SIZE, lot of random issues pop up if you try to increase it
+  size [0.35 0.35 0.25]
+  origin [0 0 0 0]
+  gui_nose 1
+  #Differential Turn
+  drive "diff"
+  #Min-Max velocities for x,y,z,theta
+  velocity_bounds [-40 40 -1 1 -1 1 -360 360 ]          
+  acceleration_bounds [-1 1 -1 1 -1 1 -360 360]
+  #Laser sensor placed on the robot
+  topurg(pose [ 0.000 0.000 0 0.000 ])
+)
+
+# throw in a robot in the map
+robot( pose [ 125.0 90.0 0.0 0.0 ] name "robot" color "red")
+
+#FloorPlan Properties
+define floorplan model
+(
+  # sombre, sensible, artistic
+  color "gray30"
+
+  # most maps will need a bounding box
+  boundary 1
+
+  gui_nose 0
+  gui_grid 0
+
+  gui_outline 0
+  gripper_return 0
+  fiducial_return 0
+  laser_return 1
+)
+
+# set the resolution of the underlying raytrace model in meters
+resolution 0.02
+interval_sim 100  # simulation timestep in milliseconds
+
+#Window Properties
+window
+( 
+  size [ 612.000 484.000 ] 
+
+  rotate [ 0.000 0.0 ]
+  scale 2.358 
+)
+
+# load an environment bitmap
+floorplan
+( 
+  name "tutorial"
+  bitmap "MAP.png"
+  size [259.0 194.0 0.5]
+  pose [ 129.5 97.0 0.0 0.0 ]
+)

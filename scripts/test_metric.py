@@ -7,6 +7,7 @@ from std_msgs.msg import Bool
 import json
 import tf
 from math import *
+from read_config import read_config
 
 class RobotLogger():
     def __init__(self):
@@ -32,6 +33,8 @@ class RobotLogger():
                 self.handle_shutdown
         )
         self.init_files()
+        self.config = read_config()
+        self.num_particles = self.config['num_particles']
         rospy.spin()
 
     def init_files(self):
@@ -131,6 +134,18 @@ class RobotLogger():
 
         self.update_metric()
 
+        #particles_meeting_max_limit
+        count = 0.0
+        for particle_index in range(len(self.particlecloud_poses)):
+            pose = self.particlecloud_poses[particle_index]
+            diff_x_value = (pose.position.x - self.base_truth_x)
+            diff_y_value = (pose.position.y - self.base_truth_y)
+            diff_dist_val = sqrt(diff_x_value**2 + diff_y_value**2)
+            if (diff_dist_val <= 55):
+                count += 1
+        #percentage
+        self.particles_meeting_max_limit = float(count*100.0/self.num_particles)
+
         if message.data:
             with open('time_results.json', 'w') as time:
                 time.write('{\n"time_elapsed" : ')
@@ -150,6 +165,17 @@ class RobotLogger():
                 metric_file.write('{\n"metric" : ')
                 json.dump(self.metric_data, metric_file)
                 metric_file.write('\n} \n')
+            with open('max_limit_results.json', 'w') as max_limit_file:
+                max_limit_file.write('{\n"max_limit_percentage" : ')
+                json.dump(self.particles_meeting_max_limit, max_limit_file)
+                max_limit_file.write('\n} \n')
+            with open('basetruth.json', 'w') as bt_file:
+                base_truth = []
+                base_truth.append(self.base_truth_x)
+                base_truth.append(self.base_truth_y)
+                bt_file.write('{\n"basetruth" : ')
+                json.dump(base_truth, bt_file)
+                bt_file.write('\n} \n')
 
 
 if __name__ == '__main__':
