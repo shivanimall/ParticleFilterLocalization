@@ -19,17 +19,17 @@
     ],
 
 
+
     "first_move_sigma_x": 2,
     "first_move_sigma_y": 2,
     "first_move_sigma_angle": 0.08,
-    "resample_sigma_x": 1, 
-    "resample_sigma_y": 1,
-    "resample_sigma_angle": 0.01,
+    "resample_sigma_x": 2, 
+    "resample_sigma_y": 2,
+    "resample_sigma_angle": 0.04,
 
     "laser_z_hit": 0.80,
     "laser_z_rand": 0.05,
-    "laser_sigma_hit":  2,
-
+    "laser_sigma_hit":  1,
 
     "num_particles": 800
 
