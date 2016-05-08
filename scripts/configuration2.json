@@ -20,7 +20,7 @@
 
     "laser_z_hit": 0.80,
     "laser_z_rand": 0.05,
-    "laser_sigma_hit":  1,
+    "laser_sigma_hit":  2,
 
 
     "num_particles": 800

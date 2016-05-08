@@ -13,8 +13,8 @@ class laserModel():
     	self.config = read_config()
     	r.seed(self.config['seed'])
     	self.laser_sigma_hit = self.config['laser_sigma_hit']
-    	rospy.Subscriber('original_scan', LaserScan, self.scan_callback)
-    	self.base_scan_pub = rospy.Publisher('base_scan', LaserScan, queue_size = 10)
+    	rospy.Subscriber('base_scan', LaserScan, self.scan_callback)
+    	self.base_scan_pub = rospy.Publisher('base_scan_with_error', LaserScan, queue_size = 10)
     	rospy.spin()
 
     def scan_callback(self, laser_scan):

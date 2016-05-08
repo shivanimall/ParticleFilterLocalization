@@ -5,7 +5,6 @@
   <node pkg="cse_190_assi_2" type="robot.py" name="particle_filter_localization" output="screen" required="true"/> 
   <node pkg="stage_ros" type="stageros" name="stageros" args="$(arg world_file)">
     <param name="base_watchdog_timeout" value="1000"/>
-    <remap from="base_scan" to="original_scan"/>
   </node>
   <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)">
     <param name="frame_id" value="/map"/>
