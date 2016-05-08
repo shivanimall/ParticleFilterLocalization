@@ -108,8 +108,8 @@ class Map(object):
         """
         Determine the x, y cooridantes of the center of a particular grid cell.
         """
-        x = row * self.resolution + .5 * self.resolution + self.origin_x
-        y = col * self.resolution + .5 * self.resolution + self.origin_y
+        x = col * self.resolution + .5 * self.resolution + self.origin_x
+        y = row * self.resolution + .5 * self.resolution + self.origin_y
         return x, y
 
     def set_cell(self, x, y, val):
